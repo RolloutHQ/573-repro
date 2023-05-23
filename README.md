@@ -30,3 +30,5 @@ This repo uses `us-west-2` for `AWS_REGION`; you can change the action environme
 ## Use
 
 Fork this repo and run the `test-docker-pulumi-up.yml` Workflow via dispatch against `main`.
+
+When done, don't forget to clean up your resources with `pulumi destroy`!
