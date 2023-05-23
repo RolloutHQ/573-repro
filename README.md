@@ -19,9 +19,10 @@ AWS_SECRET_ACCESS_KEY
 AWS_CI_ROLE_ARN
 ```
 
-Pulumi access token:
+Pulumi access token and org:
 ```
 TEST_PULUMI_ACCESS_TOKEN
+PULUMI_ORG - your pulumi organization
 ```
 
 This repo uses `us-west-2` for `AWS_REGION`; you can change the action environment to suit your needs.
