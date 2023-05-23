@@ -1,0 +1,45 @@
+env:
+  NODEVERSION: 16.x
+  AWS_REGION: us-west-2
+name: test-docker-pulumi-up
+on:
+  workflow_dispatch:
+jobs:
+  try_to_deploy:
+    runs-on: ubuntu-latest
+    name: Preview
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODEVERSION }}
+      - name: yarn install
+        run: cd docker-test && yarn install
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: ${{ env.AWS_REGION }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-duration-seconds: 3600
+          role-session-name: docker-test@githubActions
+          role-to-assume: ${{ secrets.AWS_CI_ROLE_ARN }}
+      - name: Pulumi Preview
+        uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: ${{ secrets.PULUMI_ORG }}/docker-test/dev
+          work-dir: docker-test
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.TEST_PULUMI_ACCESS_TOKEN }}
+      - name: Pulumi Up
+        uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: ${{ secrets.PULUMI_ORG }}/docker-test/dev
+          work-dir: docker-test
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.TEST_PULUMI_ACCESS_TOKEN }}
