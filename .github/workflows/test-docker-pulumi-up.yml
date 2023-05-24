@@ -1,4 +1,5 @@
 env:
+  NODEVERSION: 16.x
   AWS_REGION: us-east-1
 name: test-docker-pulumi-up
 on:
@@ -14,8 +15,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: "17.7.2"
-          registry-url: "https://registry.npmjs.org"
+          node-version: ${{ env.NODEVERSION }}
       - name: yarn install
         run: cd docker-test && yarn install
       - name: Configure AWS Credentials
