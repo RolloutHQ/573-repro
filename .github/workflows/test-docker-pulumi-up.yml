@@ -1,6 +1,5 @@
 env:
-  NODEVERSION: 16.x
-  AWS_REGION: us-west-2
+  AWS_REGION: us-east-1
 name: test-docker-pulumi-up
 on:
   workflow_dispatch:
@@ -15,7 +14,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODEVERSION }}
+          node-version: "17.7.2"
       - name: yarn install
         run: cd docker-test && yarn install
       - name: Configure AWS Credentials
@@ -31,7 +30,7 @@ jobs:
         uses: pulumi/actions@v3
         with:
           command: preview
-          stack-name: ${{ secrets.PULUMI_ORG }}/docker-test/dev
+          stack-name: rollout/docker-test/dev
           work-dir: docker-test
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.TEST_PULUMI_ACCESS_TOKEN }}
@@ -39,7 +38,7 @@ jobs:
         uses: pulumi/actions@v3
         with:
           command: up
-          stack-name: ${{ secrets.PULUMI_ORG }}/docker-test/dev
+          stack-name: rollout/docker-test/dev
           work-dir: docker-test
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.TEST_PULUMI_ACCESS_TOKEN }}
