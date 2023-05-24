@@ -1,4 +1,5 @@
 FROM node:18.12.1-alpine
+RUN corepack enable
 RUN mkdir -p /home/node/app/node_modules
 RUN chown -R node:node /home/node
 
