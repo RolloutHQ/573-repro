@@ -23,6 +23,11 @@ const registryInfo = repo.registryId.apply(async (id: any) => {
 
 // Build and publish the image.
 const image = new docker.Image("my-image", {
+    build: {
+        dockerfile: "./Dockerfile",
+        context: ".",
+        platform: "linux/arm64",
+    },
     imageName: repo.repositoryUrl,
     registry: registryInfo,
 });

@@ -27,6 +27,8 @@ jobs:
           role-duration-seconds: 3600
           role-session-name: docker-test@githubActions
           role-to-assume: ${{ secrets.AWS_CI_ROLE_ARN }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
       - name: Pulumi Preview
         uses: pulumi/actions@v3
         with:
