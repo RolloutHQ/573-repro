@@ -1,5 +1,4 @@
 env:
-  NODEVERSION: 16.x
   AWS_REGION: us-east-1
   YARN_ENABLE_INLINE_BUILDS: "true"
   YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
@@ -18,8 +17,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: "17.7.2",
-          registry-url: "https://registry.npmjs.org"
+          node-version: 17.7.2,
+          registry-url: https://registry.npmjs.org
 
       - name: yarn install
         run: cd docker-test && yarn install
