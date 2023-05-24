@@ -6,5 +6,6 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node ./app ./
 USER node
+RUN yarn install
 
 
