@@ -1,4 +1,4 @@
-:wqimport * as aws from "@pulumi/aws";
+import * as aws from "@pulumi/aws";
 import * as docker from "@pulumi/docker";
 
 // Create a private ECR registry.
