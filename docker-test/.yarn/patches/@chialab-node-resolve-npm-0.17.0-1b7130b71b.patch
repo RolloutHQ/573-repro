@@ -1,0 +1,17 @@
+diff --git a/dist/index.js b/dist/index.js
+index 8b2561f15e0fb2926fa31b1372c21189034a88d1..7d30330cf4c8e85550c410ec14c3542b2b5cfee8 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1,9 +1,9 @@
+ import { dirname as __pathDirname } from 'path';
+ import { createRequire as __moduleCreateRequire } from 'module';
+ 
+-const require = __moduleCreateRequire(import.meta.url);
+-const __filename = new URL(import.meta.url).pathname;
+-const __dirname = __pathDirname(__filename);
++// const require = __moduleCreateRequire(import.meta.url);
++// const __filename = new URL(import.meta.url).pathname;
++// const __dirname = __pathDirname(__filename);
+ 
+ var __create = Object.create;
+ var __defProp = Object.defineProperty;
